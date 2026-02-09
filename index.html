@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Soham ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+    background:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce') no-repeat center/cover;
+}
+
+/* Glass Card */
+
+.container{
+    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,0.15);
+    border-radius:25px;
+    padding:50px;
+    text-align:center;
+    width:85%;
+    max-width:750px;
+    color:white;
+    box-shadow:0 15px 60px rgba(0,0,0,0.4);
+}
+
+h1{
+    font-size:42px;
+}
+
+/* typing */
+#typing{
+    font-size:22px;
+    min-height:80px;
+}
+
+/* airplane */
+.plane{
+    font-size:40px;
+    position:absolute;
+    top:15%;
+    left:-10%;
+    animation:fly 10s linear infinite;
+}
+
+@keyframes fly{
+    from{left:-10%;}
+    to{left:110%;}
+}
+
+/* buttons */
+
+button{
+    padding:16px 35px;
+    font-size:20px;
+    border:none;
+    border-radius:14px;
+    margin:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.yes{
+    background:#ff4d6d;
+    color:white;
+}
+
+.no{
+    background:white;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* hearts */
+
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+/* photo */
+
+.photo{
+    width:180px;
+    border-radius:20px;
+    margin-top:20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="plane">✈️</div>
+
+<div class="container">
+
+<h1>Soham ❤️</h1>
+
+<div id="typing"></div>
+
+<h2 id="distance"></h2>
+
+<img class="photo" src="https://i.imgur.com/2yaf2wb.jpg">
+<p>(Replace this with your favorite photo together 😄)</p>
+
+<div id="buttons" style="display:none;">
+    <button class="yes" onclick="love()">YES ❤️</button>
+    <button class="no" onmouseover="run(this)">NO 😜</button>
+</div>
+
+<h2 id="result"></h2>
+
+</div>
+
+
+<!-- MUSIC -->
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+
+<script>
+
+/* Typing Love Story */
+
+const text = [
+"Running chemistry simulation... 🧪",
+"Result: Unbreakable Covalent Bond ❤️",
+"Launching geography tracker 🌍",
+"Distance means nothing when someone means everything.",
+"Analyzing 7 continents...",
+"My favorite place is wherever you are.",
+"",
+"Will you be my valentine, my sweet pea? 🌹"
+];
+
+let i=0, j=0, current="";
+
+function type(){
+    if(i<text.length){
+        if(j<text[i].length){
+            current+=text[i][j];
+            document.getElementById("typing").innerHTML=current;
+            j++;
+            setTimeout(type,40);
+        }
+        else{
+            current+="<br><br>";
+            i++;
+            j=0;
+            setTimeout(type,600);
+        }
+    }
+    else{
+        document.getElementById("buttons").style.display="block";
+    }
+}
+
+type();
+
+
+/* Distance */
+
+function calc(lat1, lon1, lat2, lon2){
+const R=6371;
+const dLat=(lat2-lat1)*Math.PI/180;
+const dLon=(lon2-lon1)*Math.PI/180;
+
+const a=
+Math.sin(dLat/2)**2 +
+Math.cos(lat1*Math.PI/180) *
+Math.cos(lat2*Math.PI/180) *
+Math.sin(dLon/2)**2;
+
+return Math.round(R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));
+}
+
+const km = calc(26.8467,80.9462,28.5383,-81.3792);
+
+document.getElementById("distance").innerHTML =
+🌎 Lucknow ➜ Orlando : ${km.toLocaleString()} km <br>Yet you still feel right next to me.;
+
+
+/* YES */
+
+function love(){
+
+document.getElementById("result").innerHTML=
+"YOU SAID YES!!! ❤️😭<br><br>Best discovery of my life.<br><br>Yours truly,<br>Kratika ❤️";
+
+setInterval(hearts,200);
+}
+
+
+/* NO button runs away 😄 */
+
+function run(btn){
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
+}
+
+
+/* floating hearts */
+
+function hearts(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*25+10)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),6000);
+}
+
+</script>
+
+</body>
+</html>
